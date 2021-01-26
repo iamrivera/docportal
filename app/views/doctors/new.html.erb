@@ -1,1 +1,16 @@
 <h1>Insert the form to create a new instance of your model.</h1>
+
+<h3>Please enter your Physician contact information to register for Portal New System</h3>
+<!-- Test -->
+<form method="POST" action="/docto_rs">
+    <% #first name %>
+    <p><label for="physician_first_name">First Name:</label>
+    <input type="text" "id=physician_first_name" name="physician[first_name]"></p>
+    <% #last name %>
+    <p><label for="physician_last_name">Last Name:</label>
+    <input type="text" "id=physician_last_name" name="physician[last_name]"></p>
+    <% #email %>
+    <p><label for="physician_email">Email:</label>
+    <input type="text" "id=physician_email" name="physician[email]"></p>
+    <input type="submit" value="Register">
+</form>
