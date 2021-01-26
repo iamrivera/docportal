@@ -1,28 +1,28 @@
 <h1> Welcome to DocPortal 2000! <h1>
 
-<h4>Physician Access</h4>
+<h3>Physician Access</h3>
     <form method="POST" action="TBD">
-    <label for="doctor_email">Email:</label>
+    <label for="doctor[email]">Email:</label>
     <input type="text" name="doctor[email]" placeholder="Ex: anita@docpoc.com">
-    <label for="doctor_password">Password:</label>
+    <label for="doctor[password]">Password:</label>
     <input type="text" name="doctor[password]" placeholder="Ex: SuperTopSecret!">
     <input type="submit" value="Log In">
     </form>
-    <p> <a href="/doctors/new">Not Registered? Sign-up here.</a><p>
+    <br>
+    <p>Not Registered? <a href="/doctors/new">Sign-up here.</a><p>
 
-<br>
-<br>
-<br>
+<hr>
 
-<h4>Patient Access</h4>
+<h3>Patient Access</h3>
     <form method="POST" action="TBD">
-    <label for="patient_email">Email:</label>
-    <input type="text" name="doctor[patient][][email]" placeholder="Ex: pally@hal.com">
-    <label for="patient_password">Password:</label>
-    <input type="text" name="doctor[patient][][password]" placeholder="Ex: SuperTopSecret!">
+    <label for="patient[email]">Email:</label>
+    <input type="text" name="patient[email]" placeholder="Ex: pally@hal.com">
+    <label for="patient[passwprd]">Password:</label>
+    <input type="text" name="patient[password]" placeholder="Ex: SuperTopSecret!">
     <input type="submit" value="Log In">
     </form>
-    <p> <a href="/patients/new">Not Registered? Sign-up here.</a><p>
+    <br>
+    <p>Not Registered? <a href="/patients/new"> Sign-up here.</a><p>
 
 
     
