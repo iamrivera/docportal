@@ -12,7 +12,9 @@ class DoctorsController < ApplicationController
 
   # POST: /doctors
   post "/doctors" do
-    redirect "/doctors"
+    binding.pry
+    @user = Doctor.create(params)
+    redirect "/doctors/#{@user.id}"
   end
 
   # GET: /doctors/5
