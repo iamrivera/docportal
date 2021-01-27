@@ -13,6 +13,7 @@ class ApplicationController < Sinatra::Base
 
   post "/" do
     binding.pry
+    Doctor.find_by(email: params["doctor"]["email"], password: params["doctor"]["password"])
   end
 
   helpers do 
@@ -22,6 +23,10 @@ class ApplicationController < Sinatra::Base
 
     def current_user
       user.find_by(session[:user_id])
+    end
+
+    def find_doctor
+      Doctor.find_by(email: params["doctor"]["email"], password: params["doctor"]["password"])
     end
   end
 
