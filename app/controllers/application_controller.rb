@@ -12,7 +12,7 @@ class ApplicationController < Sinatra::Base
   end
 
   post "/" do
-    binding.pry
+    # binding.pry
     if params.keys.first == "doctor"
       if find_doctor
         user = find_doctor
