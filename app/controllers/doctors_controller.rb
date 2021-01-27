@@ -32,6 +32,7 @@ class DoctorsController < ApplicationController
 
   # PATCH: /doctors/5
   patch "/doctors/:id" do
+    binding.pry
     redirect "/doctors/:id"
   end
 
