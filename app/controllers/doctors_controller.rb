@@ -26,6 +26,7 @@ class DoctorsController < ApplicationController
 
   # GET: /doctors/5/edit
   get "/doctors/:id/edit" do
+    @user = Doctor.find(params[:id])
     erb :"/doctors/edit.html"
   end
 
