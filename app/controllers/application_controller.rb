@@ -21,7 +21,12 @@ class ApplicationController < Sinatra::Base
         redirect to "/doctors/new"
       end
     else
-      
+      if find_patient
+        user = find_patient
+        redirect to "/patients/#user.id}"
+      else
+        redirect to "patients/new"
+      end
     end
     #if params keys doctor then find_doctor
     #doctor exists then take to doctor/id show page
@@ -43,7 +48,7 @@ class ApplicationController < Sinatra::Base
     end
 
     def find_patient
-      Patient.find_by(email: params["patient"]["email"], password: params[""]["password"])
+      Patient.find_by(email: params["patient"]["email"], password: params["patient"]["password"])
     end
   end
 
