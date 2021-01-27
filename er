@@ -1,0 +1,13 @@
+=> [32m#<Doctor:0x00007fffe1e10710[0m
+ id: [1;34m10[0m,
+ first_name: [31m[1;31m"[0m[31mPad[1;31m"[0m[31m[0m,
+ last_name: [31m[1;31m"[0m[31mBear[1;31m"[0m[31m[0m,
+ email: [31m[1;31m"[0m[31mpadbear@gear.com[1;31m"[0m[31m[0m,
+ bio: [31m[1;31m"[0m[31madfs[1;31m"[0m[31m[0m,
+ specialty: [31m[1;31m"[0m[31masdf[1;31m"[0m[31m[0m,
+ medical_school: [1;36mnil[0m,
+ residency: [31m[1;31m"[0m[31masdf[1;31m"[0m[31m[0m,
+ graduation_date: [31m[1;31m"[0m[31masdf[1;31m"[0m[31m[0m,
+ password: [31m[1;31m"[0m[31masdfasdf[1;31m"[0m[31m[0m,
+ created_at: [1;34m2021[0m-[1;34m01[0m-[1;34m27[0m [1;34m06[0m:[1;34m17[0m:[1;34m22[0m [1;34;4mUTC[0m,
+ updated_at: [1;34m2021[0m-[1;34m01[0m-[1;34m27[0m [1;34m06[0m:[1;34m17[0m:[1;34m22[0m [1;34;4mUTC[0m[32m>[0m

@@ -32,8 +32,10 @@ class DoctorsController < ApplicationController
 
   # PATCH: /doctors/5
   patch "/doctors/:id" do
-    binding.pry
-    redirect "/doctors/:id"
+    new_params = params.except!("_method")
+    user = user.find(params["id"])
+    user.update(new_params)
+    redirect "/doctors/#{user.id}"
   end
 
   # DELETE: /doctors/5/delete
