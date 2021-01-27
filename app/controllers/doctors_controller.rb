@@ -32,9 +32,10 @@ class DoctorsController < ApplicationController
 
   # PATCH: /doctors/5
   patch "/doctors/:id" do
-    new_params = params.except!("_method")
-    user = user.find(params["id"])
+    new_params = params.except!("_method") #except! removes the indicated key from hash
+    user = Doctor.find(params["id"])
     user.update(new_params)
+    user
     redirect "/doctors/#{user.id}"
   end
 
