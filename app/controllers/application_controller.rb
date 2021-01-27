@@ -13,7 +13,20 @@ class ApplicationController < Sinatra::Base
 
   post "/" do
     binding.pry
-    Doctor.find_by(email: params["doctor"]["email"], password: params["doctor"]["password"])
+    if params.keys.first == "doctor"
+      if find_doctor
+        user = find_doctor
+        redirect to "/doctors/#{user.id}"
+      else
+        redirect to "/doctors/new"
+      end
+    else
+      
+    end
+    #if params keys doctor then find_doctor
+    #doctor exists then take to doctor/id show page
+    #if not exists then take to signup page
+    #else find_patient
   end
 
   helpers do 
@@ -27,6 +40,10 @@ class ApplicationController < Sinatra::Base
 
     def find_doctor
       Doctor.find_by(email: params["doctor"]["email"], password: params["doctor"]["password"])
+    end
+
+    def find_patient
+      Patient.find_by(email: params["patient"]["email"], password: params[""]["password"])
     end
   end
 
