@@ -20,6 +20,7 @@ class DoctorsController < ApplicationController
   # GET: /doctors/5
   get "/doctors/:id" do
     @user = Doctor.find(params[:id])
+    @patients = Patient.all
     erb :"/doctors/show.html"
   end
 
