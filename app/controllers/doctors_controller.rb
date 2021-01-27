@@ -12,13 +12,14 @@ class DoctorsController < ApplicationController
 
   # POST: /doctors
   post "/doctors" do
-    binding.pry
-    @user = Doctor.create(params)
-    redirect "/doctors/#{@user.id}"
+    # binding.pry
+    user = Doctor.create(params)
+    redirect "/doctors/#{user.id}"
   end
 
   # GET: /doctors/5
   get "/doctors/:id" do
+    @user = Doctor.find(params[:id])
     erb :"/doctors/show.html"
   end
 
