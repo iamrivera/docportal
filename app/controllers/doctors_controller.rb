@@ -14,6 +14,7 @@ class DoctorsController < ApplicationController
   post "/doctors" do
     # binding.pry
     user = Doctor.create(params)
+    session[:user_id] = user.id
     redirect "/doctors/#{user.id}"
   end
 
