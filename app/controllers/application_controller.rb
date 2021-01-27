@@ -23,9 +23,9 @@ class ApplicationController < Sinatra::Base
     else
       if find_patient
         user = find_patient
-        redirect to "/patients/#user.id}"
+        redirect to "/patients/#{user.id}"
       else
-        redirect to "patients/new"
+        redirect to "/patients/new"
       end
     end
     #if params keys doctor then find_doctor
