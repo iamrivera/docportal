@@ -16,7 +16,10 @@ class ApplicationController < Sinatra::Base
     if params.keys.first == "doctor"
       if find_doctor
         user = find_doctor
-        redirect to "/doctors/#{user.id}"
+        if user && user.authenticate(params[:password])
+          session[user_id] = user.index
+          redirect to "/doctors/#{user.id}"
+        end
       else
         redirect to "/doctors/new"
       end
