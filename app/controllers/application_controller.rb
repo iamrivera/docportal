@@ -11,7 +11,7 @@ class ApplicationController < Sinatra::Base
     erb :index
   end
 
-  post "/" do
+  post "/login" do
     # binding.pry
     if params.keys.first == "doctor"
       if find_doctor

@@ -14,7 +14,6 @@ class DoctorsController < ApplicationController
   post "/doctors" do
     # binding.pry
     user = Doctor.create(params)
-    session[:user_id] = user.id
     redirect "/doctors/#{user.id}"
   end
 
@@ -28,11 +27,6 @@ class DoctorsController < ApplicationController
   # GET: /doctors/5/edit
   get "/doctors/:id/edit" do
     @user = Doctor.find(params[:id])
-    if @user.logged_in?
-      erb :"/doctors/edit.html"
-    else
-      redirect ""
-    end
     erb :"/doctors/edit.html"
   end
 
@@ -48,7 +42,7 @@ class DoctorsController < ApplicationController
   #GET: /doctors/error
   get "/doctors/error" do 
     erb :"doctors/error.html"
-  end"
+  end
 
   # DELETE: /doctors/5/delete
   delete "/doctors/:id/delete" do
