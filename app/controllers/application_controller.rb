@@ -47,7 +47,7 @@ class ApplicationController < Sinatra::Base
     end
 
     def find_doctor
-      Doctor.find_by(email: params["doctor"]["email"], password: params["doctor"]["password"])
+      Doctor.find_by(email: params["doctor"]["email"], password: params["doctor"]["password_digest"])
     end
 
     def find_patient
