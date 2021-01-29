@@ -7,6 +7,11 @@ class ApplicationController < Sinatra::Base
     set :views, 'app/views'
   end
 
+  configure do
+    enable :sessions
+    set :session_secret, "secret"
+  end
+
   get "/" do
     erb :index
   end
@@ -14,21 +19,20 @@ class ApplicationController < Sinatra::Base
   post "/login" do
     # binding.pry
     if params.keys.first == "doctor"
-      if find_doctor
-        user = find_doctor
-        if user && user.authenticate(params[:password])
-          session[user_id] = user.index
-          redirect to "/doctors/#{user.id}"
-        end
+      # binding.pry
+      user = find_doctor
+      if user && user.authenticate(user.password_digest)
+        session[user_id] = user.id
+        redirect to "/doctors/#{user.id}"
       else
         redirect to "/doctors/new"
       end
     else
       if find_patient
-        user = find_patient
-        redirect to "/patients/#{user.id}"
+      user = find_patient
+      redirect to "/patients/#{user.id}"
       else
-        redirect to "/patients/new"
+      redirect to "/patients/new"
       end
     end
     #if params keys doctor then find_doctor
@@ -47,7 +51,7 @@ class ApplicationController < Sinatra::Base
     end
 
     def find_doctor
-      Doctor.find_by(email: params["doctor"]["email"], password: params["doctor"]["password_digest"])
+      Doctor.find_by(email: params["doctor"]["email"], password_digest: params["doctor"]["password_digest"])
     end
 
     def find_patient
