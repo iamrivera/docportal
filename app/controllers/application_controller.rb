@@ -13,6 +13,7 @@ class ApplicationController < Sinatra::Base
   end
 
   get "/" do
+    #session blank "user_id" on initial arrival
     erb :index
   end
 
@@ -51,7 +52,7 @@ class ApplicationController < Sinatra::Base
     end
 
     def current_user
-      user.find_by(session[:user_id])
+      @user.find_by(session[:user_id])
     end
 
     def existing_doctor

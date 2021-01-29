@@ -7,21 +7,21 @@ class DoctorsController < ApplicationController
 
   # GET: /doctors/new
   get "/doctors/new" do
+    #session "user_id" blank on initial arrival
     erb :"/doctors/new.html"
   end
 
   # POST: /doctors
   post "/doctors" do
     # binding.pry
-    user = Doctor.create(params)
-    redirect "/doctors/#{user.id}"
+    user = Doctor.create(params) 
+    redirect "/doctors/#{@user.id}"
   end
 
   # GET: /doctors/5
   get "/doctors/:id" do
     @user = Doctor.find(params[:id])
     session["user_id"] = @user.id
-    binding.pry
     @patients = Patient.all
     erb :"/doctors/show.html"
   end
@@ -29,7 +29,10 @@ class DoctorsController < ApplicationController
   # GET: /doctors/5/edit
   get "/doctors/:id/edit" do
     @user = Doctor.find(params[:id])
-    erb :"/doctors/edit.html"
+    if current_user
+      erb :"/doctors/edit.html"
+    else
+      redirect to "/doctors/error.html"
   end
 
   # PATCH: /doctors/5
