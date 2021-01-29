@@ -31,6 +31,7 @@ class DoctorsController < ApplicationController
     @user = Doctor.find(params[:id])
     session["user_id"] = @user.id
     @patients = Patient.all
+    # binding.pry
     erb :"/doctors/show.html"
   end
 

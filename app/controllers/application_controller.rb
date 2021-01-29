@@ -21,9 +21,9 @@ class ApplicationController < Sinatra::Base
     # binding.pry
     # binding.pry
     if params.keys.first == "doctor"
-      user = existing_doctor
-      binding.pry
-      if user && user.authenticate(user.password)
+      user = Doctor.find_by("email" => params["doctor"]["email"])
+
+      if user && user.authenticate(params["doctor"]["password"])
         session["user_id"] = user.id
         redirect to "/doctors/#{user.id}"
       else
