@@ -21,7 +21,7 @@ class ApplicationController < Sinatra::Base
     if params.keys.first == "doctor"
       # binding.pry
       user = find_doctor
-      if user && user.authenticate(user.password_digest)
+      if user #&& user.authenticate(user.password_digest)
         @session[:user_id] = user.id
         redirect to "/doctors/#{user.id}"
       else
