@@ -20,6 +20,8 @@ class DoctorsController < ApplicationController
   # GET: /doctors/5
   get "/doctors/:id" do
     @user = Doctor.find(params[:id])
+    session["user_id"] = @user.id
+    binding.pry
     @patients = Patient.all
     erb :"/doctors/show.html"
   end
