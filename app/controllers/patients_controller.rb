@@ -6,13 +6,23 @@ class PatientsController < ApplicationController
   end
 
   # GET: /patients/new
-  get "/patients/new" do
+  get "/patients/register" do
     erb :"/patients/new.html"
   end
 
   # POST: /patients
-  post "/patients" do
-    redirect "/patients"
+  post "/patients/register" do
+    user = Patient.new()
+    binding.pry
+    params.each do |key, value|
+      user.send("#{key}=",value)
+    end
+
+    if user.save
+      redirect to "/patients/#{user.id}"
+    else
+      erb :"/patients/error.html"
+    end
   end
 
   # GET: /patients/5

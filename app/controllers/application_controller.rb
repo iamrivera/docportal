@@ -19,7 +19,7 @@ class ApplicationController < Sinatra::Base
 
   post "/login" do
     # binding.pry
-    # binding.pry
+    # binding.pry | Do I use a case when?
     if params.keys.first == "doctor"
       user = Doctor.find_by("email" => params["doctor"]["email"])
 
@@ -30,31 +30,20 @@ class ApplicationController < Sinatra::Base
         redirect to "/doctors/register"
       end
     else
-      if find_patient
-      user = find_patient
-      redirect to "/patients/#{user.id}"
+      user = Patient.find_by("email" => params["doctor"]["email"]) 
+      
+      if user && user.authenticate(params["patient"]["password"])
+        session["user_id"] = user.id
+        redirect to "/patients/#{user.id}"
       else
-      redirect to "/patients/new"
+        erb :"/patients/error.html"
       end
     end
-    #if params keys doctor then find_doctor
-    #doctor exists then take to doctor/id show page
-    #if not exists then take to signup page
-    #else find_patient
   end
 
   get '/logout' do 
     session.clear
     redirect to '/'
-  end
-
-#cleaner methods
-  def existing_doctor
-    Doctor.find_by(email: params["doctor"]["email"], password: params["doctor"]["password"])
-  end
-
-  def find_patient
-    Patient.find_by(email: params["patient"]["email"], password: params["patient"]["password"])
   end
 
 end

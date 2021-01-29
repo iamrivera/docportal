@@ -1,14 +1,16 @@
 <h3>Please enter your Patient contact information to register for Portal New System</h3>
 <br>
-<form method="POST" action="/docto_rs">
+<form method="POST" action="/patients/register">
     <% #first name %>
-    <p><label for="patient_first_name">First Name:</label>
-    <input type="text" "id=patient_first_name" name="patient[first_name]"></p>
+    <p><label for="first_name">First Name:</label>
+    <input type="text" "id=first_name" name="first_name"></p>
     <% #last name %>
-    <p><label for="patient_last_name">Last Name:</label>
-    <input type="text" "id=patient_last_name" name="patient[last_name]"></p>
+    <p><label for="last_name">Last Name:</label>
+    <input type="text" "id=last_name" name="last_name"></p>
     <% #email %>
-    <p><label for="patient_email">Email:</label>
-    <input type="text" "id=patient_email" name="patient[email]"></p>
+    <p><label for="email">Email:</label>
+    <input type="text" "id=email" name="email"></p>
+    <p><label for="password">Password:</label>
+    <input type="text" "id=password" name="password"></p>
     <input type="submit" value="Register">
 </form>
