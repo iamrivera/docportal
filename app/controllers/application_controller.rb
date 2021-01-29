@@ -21,8 +21,7 @@ class ApplicationController < Sinatra::Base
     if params.keys.first == "doctor"
       if existing_doctor #&& user.authenticate(user.password_digest)
         user = existing_doctor
-        @session = session
-        @session[:user_id] = user.id
+        session["user_id"] = user.id
         redirect to "/doctors/#{user.id}"
       else
         redirect to "/doctors/new"
@@ -42,8 +41,9 @@ class ApplicationController < Sinatra::Base
   end
 
   get '/logout' do 
+    binding.pry
     session.clear
-    redirect '/'
+    redirect to '/'
   end
 
   helpers do 
