@@ -6,16 +6,24 @@ class DoctorsController < ApplicationController
   end
 
   # GET: /doctors/new
-  get "/doctors/new" do
+  get "/doctors/register" do
     #session "user_id" blank on initial arrival
     erb :"/doctors/new.html"
   end
 
   # POST: /doctors
-  post "/doctors" do
+  post "/doctors/register" do
     # binding.pry
-    user = Doctor.create(params) 
-    redirect "/doctors/#{@user.id}"
+    user = Doctor.new()
+    params.each do |key, value|
+      user.send("#{key}=",value)
+    end
+
+    if user.save
+      redirect to "/doctors/#{user.id}"
+    else
+      erb :"/doctors/error.html"
+    end
   end
 
   # GET: /doctors/5
@@ -28,11 +36,8 @@ class DoctorsController < ApplicationController
 
   # GET: /doctors/5/edit
   get "/doctors/:id/edit" do
-    @user = Doctor.find(params[:id])
-    if current_user
-      erb :"/doctors/edit.html"
-    else
-      redirect to "/doctors/error.html"
+    @user = Doctor.find(params[:id]) 
+    erb :"/doctors/edit.html"
   end
 
   # PATCH: /doctors/5
@@ -46,7 +51,7 @@ class DoctorsController < ApplicationController
 
   #GET: /doctors/error
   get "/doctors/error" do 
-    erb :"doctors/error.html"
+    erb :"/doctors/error.html"
   end
 
   # DELETE: /doctors/5/delete

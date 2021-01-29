@@ -1,16 +1,22 @@
-<div class="topnav">
-  <a class="active" href="#home">News</a>
-  <a href="/doctors/<%=@user.id%>/edit">Edit Profile</a>
-  <a href="/logout">Log Out</a>
-</div>
-<br>
-<h3>Welcome to Your Profile Doctor <%=@user.last_name%>.</h3>
-<img src= "https://unsplash.it/150/150?image=786"/> 
-<p><h6>Name: <%=@user.first_name%> <%=@user.last_name%><h6><p>
-<p><h6>Email: <%=@user.email%><h6><p>
-<p><%=@user.bio%></p>
+<%if logged_in?%>
+  <div class="topnav">
+    <a class="active" href="#home">News</a>
+    <a href="/doctors/<%=@user.id%>/edit">Edit Profile</a>
+    <a href="/logout">Log Out</a>
+  </div>
+  <br>
+  <h3>Welcome to Your Profile Doctor <%=@user.last_name%>.</h3>
+  <img src= "https://unsplash.it/150/150?image=786"/> 
+  <p><h6>Name: <%=@user.first_name%> <%=@user.last_name%><h6><p>
+  <p><h6>Email: <%=@user.email%><h6><p>
+  <p><%=@user.bio%></p>
 
-<p><h6>Patients:<h6><p>
+  <p><h6>Patients:<h6><p>
+<%else%>
+<h1>TESTING</h1>
+<%end%>
+
+
 
 
 

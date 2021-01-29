@@ -19,13 +19,15 @@ class ApplicationController < Sinatra::Base
 
   post "/login" do
     # binding.pry
+    # binding.pry
     if params.keys.first == "doctor"
-      if existing_doctor #&& user.authenticate(user.password_digest)
-        user = existing_doctor
+      user = existing_doctor
+      binding.pry
+      if user && user.authenticate(user.password)
         session["user_id"] = user.id
         redirect to "/doctors/#{user.id}"
       else
-        redirect to "/doctors/new"
+        redirect to "/doctors/register"
       end
     else
       if find_patient
@@ -46,22 +48,13 @@ class ApplicationController < Sinatra::Base
     redirect to '/'
   end
 
-  helpers do 
-    def logged_in?
-      !!session[:user_id]
-    end
+#cleaner methods
+  def existing_doctor
+    Doctor.find_by(email: params["doctor"]["email"], password: params["doctor"]["password"])
+  end
 
-    def current_user
-      @user.find_by(session[:user_id])
-    end
-
-    def existing_doctor
-      Doctor.find_by(email: params["doctor"]["email"], password_digest: params["doctor"]["password_digest"])
-    end
-
-    def find_patient
-      Patient.find_by(email: params["patient"]["email"], password: params["patient"]["password"])
-    end
+  def find_patient
+    Patient.find_by(email: params["patient"]["email"], password: params["patient"]["password"])
   end
 
 end
