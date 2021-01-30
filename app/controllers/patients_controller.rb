@@ -7,11 +7,14 @@ class PatientsController < ApplicationController
 
   # GET: /patients/new
   get "/patients/register" do
+    @doctors = Doctor.all
     erb :"/patients/new.html"
   end
 
   # POST: /patients
   post "/patients/register" do
+    binding.pry
+    @doctors = Doctor.all
     user = Patient.new()
     params.each do |key, value|
       user.send("#{key}=",value)

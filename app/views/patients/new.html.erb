@@ -12,5 +12,11 @@
     <input type="text" "id=email" name="email"></p>
     <p><label for="password">Password:</label>
     <input type="text" "id=password" name="password"></p>
+    <p><label for="doctor">Please Select a Doctor:</label></p>
+    <% @doctors.each do |doctor| %>
+        <input type="checkbox" name="doctor_id" id="<%= doctor.id %>" value="<%=doctor.id%>"> <%=doctor.first_name%> 
+    <%end%>
+    <br>
+    <br>
     <input type="submit" value="Register">
 </form>
