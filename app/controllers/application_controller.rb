@@ -30,20 +30,20 @@ class ApplicationController < Sinatra::Base
         redirect to "/doctors/register"
       end
     else
-      user = Patient.find_by("email" => params["doctor"]["email"]) 
+      user = Patient.find_by("email" => params["patient"]["email"]) 
       
       if user && user.authenticate(params["patient"]["password"])
         session["user_id"] = user.id
         redirect to "/patients/#{user.id}"
       else
-        erb :"/patients/error.html"
+        redirect to "/patients/register"
       end
     end
   end
 
   get '/logout' do 
     session.clear
-    redirect to '/'
+    erb :logout
   end
 
 end
