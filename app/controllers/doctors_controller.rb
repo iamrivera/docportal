@@ -53,7 +53,13 @@ class DoctorsController < ApplicationController
     #GET: /doctors/patient/:id
     get "/doctors/patients/:id" do 
       @patient = Patient.find(params[:id])
-      erb :"patprofile.html.rb"
+      binding.pry
+      erb :"/doctors/patprofile.html"
+    end
+
+    #PATCH: /doctors/patient/:id/edit
+    patch "/doctors/patients/:id" do
+      @patient = Patient.find_by()
     end
 
   #GET: /doctors/error

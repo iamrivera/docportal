@@ -1,0 +1,23 @@
+<h3>You are currently seeing <%= "#{@patient.first_name} #{@patient.last_name}'s Profile" %></h3>
+<img src= "https://unsplash.it/150/150?image=786"/> 
+
+<form method="POST" action="/doctors/patients/:id" id="patient"
+
+    <input type="hidden" id="hidden" name="_method" value="PATCH">
+
+    <p><label for="first_name">First Name:</label>
+    <input type="text" "id=first_name" name="first_name" value="<%=@patient.first_name%>"></p>
+
+    <p><label for="last_name">Last Name:</label>
+    <input type="text" "id=last_name" name="last_name" value="<%=@patient.last_name%>"></p>
+
+    <p><label for="birthday">Birthday:</label>
+    <input type="text" "id=birthday" name="birthday" value="<%=@patient.birthday%>"></p>
+
+    <input type="submit" value="Update">
+</form>
+
+<textarea name="notes" form="patient"><%=@patient.notes%></textarea>
+
+
+
