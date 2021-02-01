@@ -1,5 +1,5 @@
   <div class="topnav">
-    <a class="active" href="#home">News</a>
+    <a href="#home">News</a>
     <a href="/doctors/<%=@user.id%>/edit">Edit Profile</a>
     <a href="/logout">Log Out</a>
   </div>
@@ -10,10 +10,14 @@
   <p><h6>Email: <%=@user.email%><h6><p>
   <p><%=@user.bio%></p>
 
-  <h3>Patient Management<h3>
+  <h3>Patient Management</h3>
+  <p> <%@patients.each do |patient|%>
+        <%="#{patient.first_name} #{patient.last_name}"%>
+        <a href="/doctors/patients/<%=patient.id%>">See Patient Profile</a>
+      <%end%>
+  </p>
   <p> Update Patient </p> 
 
-<h1>TESTING</h1>
 
 
 

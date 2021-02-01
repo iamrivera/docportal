@@ -30,7 +30,7 @@ class DoctorsController < ApplicationController
   get "/doctors/:id" do
     @user = Doctor.find(params[:id])
     session["user_id"] = @user.id
-    @patients = Patient.all
+    @patients = @user.patients
     # binding.pry
     erb :"/doctors/show.html"
   end
@@ -49,6 +49,12 @@ class DoctorsController < ApplicationController
     user
     redirect "/doctors/#{user.id}"
   end
+
+    #GET: /doctors/patient/:id
+    get "/doctors/patients/:id" do 
+      @patient = Patient.find(params[:id])
+      erb :"patprofile.html.rb"
+    end
 
   #GET: /doctors/error
   get "/doctors/error" do 
