@@ -13,7 +13,6 @@ class PatientsController < ApplicationController
 
   # POST: /patients
   post "/patients/register" do
-    binding.pry
     @doctors = Doctor.all
     user = Patient.new()
     params.each do |key, value|

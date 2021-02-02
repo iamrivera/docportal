@@ -70,6 +70,14 @@ class DoctorsController < ApplicationController
     erb :"/doctors/error.html"
   end
 
+  # GET: /doctors/patient/:id/delete
+  get "/doctors/patient/:id/delete" do
+    @patient = Patient.find(params[:id])
+    @patient.delete
+    redirect to "/doctors/#{session[:user_id]}"
+  end
+
+
   # DELETE: /doctors/5/delete
   delete "/doctors/:id/delete" do
     redirect "/doctors"

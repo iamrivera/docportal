@@ -13,6 +13,7 @@
   <p> <%@patients.each do |patient|%>
         <%="#{patient.first_name} #{patient.last_name}"%>
         <a href="/doctors/patient/<%=patient.id%>">See Patient Profile</a>
+        <a href="/doctors/patient/<%=patient.id%>/delete">Delete Patient</a>
       <%end%>
   </p>
 
