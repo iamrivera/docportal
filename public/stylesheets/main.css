@@ -1,7 +1,7 @@
 @media screen {
   /* --- Reset Styles --- */
   * {
-    list-style: none;
+    list-style: square;
     margin: 0;
     padding: 0;
   }
