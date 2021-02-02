@@ -5,16 +5,24 @@
 
     <input type="hidden" id="hidden" name="_method" value="PATCH">
 
+    <!-- PATIENT - FIRST NAME -->
     <p><label for="first_name">First Name:</label>
     <input type="text" "id=first_name" name="first_name" value="<%=@patient.first_name%>"></p>
 
+    <!-- PATIENT - LAST NAME -->
     <p><label for="last_name">Last Name:</label>
     <input type="text" "id=last_name" name="last_name" value="<%=@patient.last_name%>"></p>
 
+    <!-- PATIENT - BIRTHDAY -->
+    <p><label for="birthday">Birthday</label>
+    <input type="text" "id=birthday" name="birthday" value="<%=@patient.birthday%>"></p>
+
+    <!-- PATIENT - NOTES - FORMAT TEXT BOX AREA TO BE LARGER IN NEXT ITERATION -->
+    <p><label for="notes">Visit Notes</label>
+    <input type="text" id="notes" name="notes" value="<%=@patient.notes%>"></p>
+
     <input type="submit" value="Update">
 </form>
-
-Add a return to doctor profile button
 
 
 
