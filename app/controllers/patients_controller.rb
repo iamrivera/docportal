@@ -28,19 +28,24 @@ class PatientsController < ApplicationController
 
   # GET: /patients/5
   get "/patients/:id" do
-    @user = Patient.find(params[:id])
+    @user = Patient.find(params["id"])
     session["user_id"] = @user.id
     erb :"/patients/show.html"
   end
 
   # GET: /patients/5/edit
   get "/patients/:id/edit" do
+    @user = Patient.find(params[:id])
     erb :"/patients/edit.html"
   end
 
   # PATCH: /patients/5
   patch "/patients/:id" do
-    redirect "/patients/:id"
+    new_params = params.except!("_method") #except! removes the indicated key from hash
+    user = Patient.find(params["id"])
+    user.update(new_params)
+    user
+    redirect to "/patients/#{user.id}"
   end
 
   # DELETE: /patients/5/delete
