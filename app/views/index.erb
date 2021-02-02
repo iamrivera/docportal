@@ -23,6 +23,12 @@
     </form>
     <br>
     <p>Not Registered? <a href="/patients/register"> Sign-up here.</a><p>
-
-
-    
+<hr>
+<!-- Link out to public facing doctor profile page in next iteration -->
+<h3>Physician's On Staff</h3>
+    <%@doctors.each do |doctor|%>
+        <ul>
+        <li><%="⁘ #{doctor.first_name} #{doctor.last_name}"%></li>
+        </ul>
+        <br>
+    <%end%>

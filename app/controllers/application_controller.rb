@@ -9,11 +9,12 @@ class ApplicationController < Sinatra::Base
 
   configure do
     enable :sessions
-    set :session_secret, "secret"
+    set :session_secret, "secret"  # BAD FORM TO MANUALLY SET - EXPERIEMENT WITH ruby -e "require 'securerandom'; puts SecureRandom.hex
   end
 
   get "/" do
     #session blank "user_id" on initial arrival
+    @doctors = Doctor.all
     erb :index
   end
 

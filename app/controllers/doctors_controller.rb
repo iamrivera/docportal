@@ -68,10 +68,10 @@ class DoctorsController < ApplicationController
     erb :"/doctors/error.html"
   end
 
-  # GET: /doctors/patient/:id/delete
+  # GET: /doctors/patient/:id/delete 
   get "/doctors/patient/:id/delete" do
     @patient = Patient.find(params[:id])
-    @patient.delete
+    @patient.delete #COULD CHANGE THIS TO DESTROY TO REMOVE FROM DB, BUT PATIENT RECORDS SHOULD BE KEPT 
     redirect to "/doctors/#{session[:user_id]}"
   end
 

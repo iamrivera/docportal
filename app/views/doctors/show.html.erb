@@ -14,7 +14,7 @@
 
   <h3>Patient Management</h3>
       <%@patients.each do |patient|%>
-        <ul>
+        <ul> 
           <li><%="⁘ #{patient.first_name} #{patient.last_name}"%>
           <a href="/doctors/patient/<%=patient.id%>">See Patient Profile</a>
           |
@@ -23,7 +23,7 @@
         </ul>
         <br>
       <%end%>
-  </ol>
+
 
 
 
