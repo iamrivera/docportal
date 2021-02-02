@@ -19,7 +19,7 @@ class PatientsController < ApplicationController
       user.send("#{key}=",value)
     end
 
-    if user.save
+    if user.save && !user.doctor_id.nil?
       redirect to "/patients/#{user.id}"
     else
       erb :"/patients/error.html"
