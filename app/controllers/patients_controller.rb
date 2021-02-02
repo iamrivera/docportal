@@ -11,19 +11,22 @@ class PatientsController < ApplicationController
     erb :"/patients/new.html"
   end
 
-  # POST: /patients
+  # POST: /patients/register
   post "/patients/register" do
-    @doctors = Doctor.all
-    user = Patient.new()
-    params.each do |key, value|
-      user.send("#{key}=",value)
-    end
+    if !Patient.find_by(email: params["email"])
+      @doctors = Doctor.all
+      user = Patient.new()
+      params.each do |key, value|
+        user.send("#{key}=",value)
+      end
 
-    if user.save && !user.doctor_id.nil?
-      redirect to "/patients/#{user.id}"
+      if user.save && !user.doctor_id.nil?
+        redirect to "/patients/#{user.id}"
+      else
+        erb :"/patients/error.html"
+      end
     else
       erb :"/patients/error.html"
-    end
   end
 
   # GET: /patients/5
