@@ -30,12 +30,12 @@
     <p><label for="birthday">Birthday (MM/DD/YY):</label>
     <input type="text" "id=birthday" name="birthday"></p>
 
-    <!--DOCTOR - CHECKBOX -->
-    <p><label for="doctor">Please Select a Doctor:</label></p>
+    <!--DOCTOR - CHECKBOX - REFACTOR AS COMPLEX FORM TO ASSIGN MULTIPLE DOCTORS IN NEXT ITERATION -->
+    <p><label for="doctor_id">Please Select a Doctor (One Selection Only):</label></p>
     <% @doctors.each do |doctor| %>
         <input type="checkbox" name="doctor_id" id="<%= doctor.id %>" value="<%=doctor.id%>"> <%=doctor.first_name%> 
+        <br>
     <%end%>
-    <br>
     <br>
     <input type="submit" value="Register">
 </form>

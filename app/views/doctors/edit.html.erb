@@ -2,26 +2,34 @@
 
 <form method="POST" action="/doctors/<%=@user.id%>">
     
+    <!-- RACK METHOD OVERRIDE PATCH SNIPPET -->
     <input type="hidden" id="hidden" name="_method" value="PATCH">
 
+    <!-- DOCTOR - FIRST NAME -->
     <p><label for="first_name">First Name:</label>
     <input type="text" "id=first_name" name="first_name" value="<%=@user.first_name%>"></p>
 
+    <!-- DOCTOR - LAST NAME -->
     <p><label for="last_name">Last Name:</label>
     <input type="text" id="last_name" name="last_name" value="<%=@user.last_name%>"></p>
 
+    <!-- DOCTOR - EMAIL -->
     <p><label for="email">Email:</label>
     <input type="text" id="email" name="email" value="<%=@user.email%>"></p>
 
+    <!-- DOCTOR - BIO -->
     <p><label for="bio">Tell Us About Yourself:</label>
     <input type="text" id="bio" name="bio" value="<%=@user.bio%>"></p>
 
+    <!-- DOCTOR - SPECIALTY -->
     <p><label for="specialty">Specialty:</label>
     <input type="text" id="specialty" name="specialty" value="<%=@user.specialty%>"></p>
 
+    <!-- DOCTOR - RESIDENCY -->
     <p><label for="residency">Residency:</label>
     <input type="text" id="residency" name="residency" value="<%=@user.residency%>"></p>
 
+    <!-- DOCTOR - GRADUATION DATE -->
     <p><label for="graduation_date">Graduation Date:</label>
     <input type="text" id="graduation_date" name="graduation_date" value="<%=@user.graduation_date%>"></p>
 

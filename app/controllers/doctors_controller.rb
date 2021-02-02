@@ -13,7 +13,6 @@ class DoctorsController < ApplicationController
 
   # POST: /doctors
   post "/doctors/register" do
-    # binding.pry
     user = Doctor.new()
     params.each do |key, value|
       user.send("#{key}=",value)
@@ -31,7 +30,6 @@ class DoctorsController < ApplicationController
     @user = Doctor.find(params[:id])
     session["user_id"] = @user.id
     @patients = @user.patients
-    # binding.pry
     erb :"/doctors/show.html"
   end
 
