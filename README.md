@@ -8,10 +8,10 @@ This was built with doctors in mind and thus the doctor has many patients and pa
 
 Appointment features are on the roadmap. 
 
-Development
+# Development
 Doc Portal 2000 was creating using the Corneal Gem. This provided an efficient manner for generating the project scaffold. More information regarding the Corneal Gem can be found here: https://github.com/thebrianemory/corneal 
 
-Structure 
+# Structure 
 |_ App
    |_ Controllers 
       |_ Application Controller 
@@ -25,8 +25,8 @@ Structure
       |_ Patients 
       |_ Application Controller 
 
-Contributing
+# Contributing
 Bug reports and pull requests are welcome on GitHub at https://github.com/iamrivera/docportal.
 
-License
+# License
 This is available as open source under the terms of the MIT License.
