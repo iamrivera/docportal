@@ -51,15 +51,18 @@ class DoctorsController < ApplicationController
   end
 
     #GET: /doctors/patient/:id
-    get "/doctors/patients/:id" do 
+    get "/doctors/patient/:id" do 
       @patient = Patient.find(params[:id])
-      binding.pry
       erb :"/doctors/patprofile.html"
     end
 
-    #PATCH: /doctors/patient/:id/edit
-    patch "/doctors/patients/:id" do
-      @patient = Patient.find_by()
+    #PATCH: /doctors/patient/:id
+    patch "/doctors/patient/:id" do
+      new_params = params.except!("_method")
+      @patient = Patient.find(params["id"])
+      @patient.update(new_params)
+      @patient
+      redirect "/doctors/#{session[:user_id]}"
     end
 
   #GET: /doctors/error
