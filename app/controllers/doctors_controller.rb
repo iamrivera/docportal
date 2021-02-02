@@ -13,13 +13,17 @@ class DoctorsController < ApplicationController
 
   # POST: /doctors
   post "/doctors/register" do
-    user = Doctor.new()
-    params.each do |key, value|
-      user.send("#{key}=",value)
-    end
+    if !Doctor.find_by(email: params["email"])
+      user = Doctor.new()
+      params.each do |key, value|
+        user.send("#{key}=",value)
+      end
 
-    if user.save
-      redirect to "/doctors/#{user.id}"
+      if user.save
+        redirect to "/doctors/#{user.id}"
+      else
+        erb :"/doctors/error.html"
+      end
     else
       erb :"/doctors/error.html"
     end
