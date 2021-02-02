@@ -1,1 +1,27 @@
-<h1>Insert the form to edit an instance of your model here.</h1>
+<h1>Please Update Profile Using Fields Below.</h1>
+
+<form method="POST" action="/patients/<%=@user.id%>">
+    
+    <input type="hidden" id="hidden" name="_method" value="PATCH">
+
+    <p><label for="first_name">First Name:</label>
+    <input type="text" "id=first_name" name="first_name" value="<%=@user.first_name%>"></p>
+
+    <p><label for="last_name">Last Name:</label>
+    <input type="text" id="last_name" name="last_name" value="<%=@user.last_name%>"></p>
+
+    <p><label for="email">Email:</label>
+    <input type="text" id="email" name="email" value="<%=@user.email%>"></p>
+
+    <p><label for="occupation">What do you do for work?:</label>
+    <input type="text" id="occupation" name="occupation" value="<%=@user.occupation%>"></p>
+
+    <p><label for="marital_status">Specialty:</label>
+    <input type="text" id="marital_status" name="marital_status" value="<%=@user.marital_status%>"></p>
+
+    <p><label for="birthday">Birthday:</label>
+    <input type="text" id="birthday" name="birthday" value="<%=@user.birthday%>"></p>
+
+    <input type="submit" value="Update">
+</form>
+

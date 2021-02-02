@@ -1,17 +1,36 @@
-<h3>Please enter your Patient contact information to register for Portal New System</h3>
+<h3>Please enter your Patient information to register for the New Patient Portal</h3>
 <br>
 <form method="POST" action="/patients/register">
-    <% #first name %>
+
+    <!-- FIRST NAME -->
     <p><label for="first_name">First Name:</label>
     <input type="text" "id=first_name" name="first_name"></p>
-    <% #last name %>
+
+    <!-- LAST NAME -->
     <p><label for="last_name">Last Name:</label>
     <input type="text" "id=last_name" name="last_name"></p>
-    <% #email %>
+
+    <!-- EMAIL -->
     <p><label for="email">Email:</label>
     <input type="text" "id=email" name="email"></p>
+
+    <!-- PASSWORD -->
     <p><label for="password">Password:</label>
     <input type="text" "id=password" name="password"></p>
+
+    <!-- OCCUPATION -->
+    <p><label for="occupation">Occupation:</label>
+    <input type="text" "id=occupation" name="occupation"></p>
+
+    <!-- MARITAL STATUS -->
+    <p><label for="marital_status">Marital Status:</label>
+    <input type="text" "id=marital_status" name="marital_status"></p>
+
+    <!-- Birthday -->
+    <p><label for="birthday">Birthday (MM/DD/YY):</label>
+    <input type="text" "id=birthday" name="birthday"></p>
+
+    <!--DOCTOR - CHECKBOX -->
     <p><label for="doctor">Please Select a Doctor:</label></p>
     <% @doctors.each do |doctor| %>
         <input type="checkbox" name="doctor_id" id="<%= doctor.id %>" value="<%=doctor.id%>"> <%=doctor.first_name%> 
