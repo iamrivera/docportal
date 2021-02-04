@@ -1,5 +1,5 @@
 <div class="topnav">
-<a href="/doctors/<%=session[:user_id]%>">Return to Your Profile (Patient Changes will not be saved)</a>
+<a href="/doctors/<%=current_doctor.id%>">Return to Your Profile (Patient Changes will not be saved)</a>
 </div>
 
 <h3>You are currently viewing <%= "#{@patient.first_name} #{@patient.last_name}'s Profile" %></h3>

@@ -21,25 +21,31 @@ class PatientsController < ApplicationController
       end
 
       if user.save && !user.doctor_id.nil?
+        session["patient_id"] = user.id 
         redirect to "/patients/#{user.id}"
       else
         erb :"/patients/error.html"
       end
     else
       erb :"/patients/error.html"
+    end
   end
 
   # GET: /patients/5
   get "/patients/:id" do
     @user = Patient.find(params["id"])
-    session["user_id"] = @user.id
+    session["patient_id"] = @user.id
     erb :"/patients/show.html"
   end
 
   # GET: /patients/5/edit
   get "/patients/:id/edit" do
-    @user = Patient.find(params[:id])
-    erb :"/patients/edit.html"
+    if logged_in_patient?
+      @user = Patient.find(params[:id])
+      erb :"/patients/edit.html"
+    else
+      erb :"/patients/error.html"
+    end
   end
 
   # PATCH: /patients/5

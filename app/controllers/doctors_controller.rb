@@ -13,13 +13,14 @@ class DoctorsController < ApplicationController
 
   # POST: /doctors
   post "/doctors/register" do
-    if !Doctor.find_by(email: params["email"])
+    if !Doctor.find_by(email: params["email"]) 
       user = Doctor.new()
       params.each do |key, value|
         user.send("#{key}=",value)
       end
-
+  
       if user.save
+        session["doctor_id"] = user.id #recreate for patient controller
         redirect to "/doctors/#{user.id}"
       else
         erb :"/doctors/error.html"
@@ -31,16 +32,20 @@ class DoctorsController < ApplicationController
 
   # GET: /doctors/5
   get "/doctors/:id" do
+    # binding.pry #think about all routes you want logged in (if else OR Not logged in containing condional logic)
     @user = Doctor.find(params[:id])
-    session["user_id"] = @user.id
     @patients = @user.patients
     erb :"/doctors/show.html"
   end
 
   # GET: /doctors/5/edit
   get "/doctors/:id/edit" do
-    @user = Doctor.find(params[:id]) 
-    erb :"/doctors/edit.html"
+    if logged_in_doctor?
+      @user = Doctor.find(params[:id]) 
+      erb :"/doctors/edit.html"
+    else
+      erb :"/doctors/error.html"
+    end
   end
 
   # PATCH: /doctors/5
@@ -53,7 +58,7 @@ class DoctorsController < ApplicationController
   end
 
     #GET: /doctors/patient/:id
-    get "/doctors/patient/:id" do 
+    get "/doctors/patient/:id" do #PROTECT EDITS, GETS, PATCH, DELETE - Doctor id == Session id
       @patient = Patient.find(params[:id])
       erb :"/doctors/patprofile.html"
     end

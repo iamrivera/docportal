@@ -25,7 +25,7 @@ class ApplicationController < Sinatra::Base
       user = Doctor.find_by("email" => params["doctor"]["email"])
 
       if user && user.authenticate(params["doctor"]["password"])
-        session["user_id"] = user.id
+        session["doctor_id"] = user.id
         redirect to "/doctors/#{user.id}"
       else
         redirect to "/doctors/register"
@@ -34,7 +34,7 @@ class ApplicationController < Sinatra::Base
       user = Patient.find_by("email" => params["patient"]["email"]) 
       
       if user && user.authenticate(params["patient"]["password"])
-        session["user_id"] = user.id
+        session["patient_id"] = user.id
         redirect to "/patients/#{user.id}"
       else
         redirect to "/patients/register"
@@ -45,6 +45,24 @@ class ApplicationController < Sinatra::Base
   get '/logout' do 
     session.clear
     erb :logout
+  end
+
+  helpers do 
+    def logged_in_doctor?
+      !!session[:doctor_id]
+    end
+
+    def logged_in_patient?
+      !!session[:patient_id]
+    end
+
+    def current_patient
+      Patient.find_by_id(session[:patient_id])
+    end
+
+    def current_doctor
+      Doctor.find_by_id(session[:doctor_id])
+    end
   end
 
 end
