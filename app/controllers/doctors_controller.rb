@@ -34,22 +34,23 @@ class DoctorsController < ApplicationController
   get "/doctors/:id" do
     # binding.pry #think about all routes you want logged in (if else OR Not logged in containing condional logic)
     # binding.pry
-    if current_doctor.id == params[:id].to_i
+    if authenticated_doctor?
       @user = Doctor.find(params[:id])
       @patients = @user.patients
       erb :"/doctors/show.html"
     else
-      erb :"/doctors/error.html"
+      erb :"/doctors/error.html" #update error pages accordingly
     end
   end
 
   # GET: /doctors/5/edit
   get "/doctors/:id/edit" do
-    if current_doctor.id == params[:id].to_i
+    # binding.pry
+    if authenticated_doctor?
       @user = Doctor.find(params[:id]) 
       erb :"/doctors/edit.html"
     else
-      erb :"/doctors/error.html"
+      erb :"/doctors/error.html" #update error pages accordingly
     end
   end
 

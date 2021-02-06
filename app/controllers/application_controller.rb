@@ -63,6 +63,10 @@ class ApplicationController < Sinatra::Base
     def current_doctor
       Doctor.find_by_id(session[:doctor_id])
     end
+
+    def authenticated_doctor?
+      logged_in_doctor? && current_doctor.id == params[:id].to_i
+    end
   end
 
 end
