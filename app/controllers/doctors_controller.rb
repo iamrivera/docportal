@@ -5,13 +5,13 @@ class DoctorsController < ApplicationController
     erb :"/doctors/index.html"
   end
 
-  # GET: /doctors/new
+  # GET: /doctors/register
   get "/doctors/register" do
     #session "user_id" blank on initial arrival
     erb :"/doctors/new.html"
   end
 
-  # POST: /doctors
+  # POST: /doctors/register
   post "/doctors/register" do
     if !Doctor.find_by(email: params["email"]) 
       user = Doctor.new()
@@ -33,14 +33,19 @@ class DoctorsController < ApplicationController
   # GET: /doctors/5
   get "/doctors/:id" do
     # binding.pry #think about all routes you want logged in (if else OR Not logged in containing condional logic)
-    @user = Doctor.find(params[:id])
-    @patients = @user.patients
-    erb :"/doctors/show.html"
+    # binding.pry
+    if current_doctor.id == params[:id].to_i
+      @user = Doctor.find(params[:id])
+      @patients = @user.patients
+      erb :"/doctors/show.html"
+    else
+      erb :"/doctors/error.html"
+    end
   end
 
   # GET: /doctors/5/edit
   get "/doctors/:id/edit" do
-    if logged_in_doctor?
+    if current_doctor.id == params[:id].to_i
       @user = Doctor.find(params[:id]) 
       erb :"/doctors/edit.html"
     else
@@ -58,7 +63,7 @@ class DoctorsController < ApplicationController
   end
 
     #GET: /doctors/patient/:id
-    get "/doctors/patient/:id" do #PROTECT EDITS, GETS, PATCH, DELETE - Doctor id == Session id
+    get "/doctors/patient/:id" do #PROTECT EDITS, GETS, PATCH, DELETE - Doctor id == Session id / Also needs to protect the patient from other doctor's editing
       @patient = Patient.find(params[:id])
       erb :"/doctors/patprofile.html"
     end
@@ -69,7 +74,7 @@ class DoctorsController < ApplicationController
       @patient = Patient.find(params["id"])
       @patient.update(new_params)
       @patient
-      redirect "/doctors/#{session[:user_id]}"
+      redirect "/doctors/#{session[:doctor_id]}"
     end
 
   #GET: /doctors/error
@@ -81,7 +86,7 @@ class DoctorsController < ApplicationController
   get "/doctors/patient/:id/delete" do
     @patient = Patient.find(params[:id])
     @patient.delete #COULD CHANGE THIS TO DESTROY TO REMOVE FROM DB, BUT PATIENT RECORDS SHOULD BE KEPT 
-    redirect to "/doctors/#{session[:user_id]}"
+    redirect to "/doctors/#{session[:doctor_id]}"
   end
 
 

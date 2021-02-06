@@ -1,0 +1,13 @@
+=> [32m#<Doctor:0x00007fffbcd54f30[0m
+ id: [1;34m40[0m,
+ first_name: [31m[1;31m"[0m[31mAnita[1;31m"[0m[31m[0m,
+ last_name: [31m[1;31m"[0m[31mKahlo[1;31m"[0m[31m[0m,
+ email: [31m[1;31m"[0m[31makahlo@docpoc.com[1;31m"[0m[31m[0m,
+ bio: [31m[1;31m"[0m[31mI am a doctor! See me cure![1;31m"[0m[31m[0m,
+ specialty: [31m[1;31m"[0m[31mMusical Medicine[1;31m"[0m[31m[0m,
+ medical_school: [31m[1;31m"[0m[31mUSC - Keck School of Medicine[1;31m"[0m[31m[0m,
+ residency: [31m[1;31m"[0m[31mUSC - LA County[1;31m"[0m[31m[0m,
+ graduation_date: [31m[1;31m"[0m[31m1991[1;31m"[0m[31m[0m,
+ created_at: [1;34m2021[0m-[1;34m02[0m-[1;34m04[0m [1;34m16[0m:[1;34m39[0m:[1;34m07[0m [1;34;4mUTC[0m,
+ updated_at: [1;34m2021[0m-[1;34m02[0m-[1;34m04[0m [1;34m16[0m:[1;34m39[0m:[1;34m07[0m [1;34;4mUTC[0m,
+ password_digest: [31m[1;31m"[0m[31m$2a$12$M8us9chaxIxS/p1suZVIC.7LXGlixKeSkC646CFpPooiP.BV6Wtau[1;31m"[0m[31m[0m[32m>[0m
