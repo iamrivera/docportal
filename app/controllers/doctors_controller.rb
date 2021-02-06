@@ -93,7 +93,7 @@ class DoctorsController < ApplicationController
     if authenticated_doctor_patient?
       @patient = Patient.find(params[:id])
       @patient.delete #COULD CHANGE THIS TO DESTROY TO REMOVE FROM DB, BUT PATIENT RECORDS SHOULD BE KEPT 
-      redirect to "/doctors/#{session[:doctor_id]}"
+      redirect to "/doctors/#{current_doctor.id}"
     else
       erb :"doctors/error.html"
     end
@@ -101,7 +101,14 @@ class DoctorsController < ApplicationController
 
 
   # DELETE: /doctors/5/delete
-  delete "/doctors/:id/delete" do
-    redirect "/doctors"
+  get "/doctors/:id/delete" do
+    if authenticated_doctor?
+      doctor = Doctor.find(params[:id])
+      doctor.delete
+      redirect to "/"
+    else
+      erb :"/doctors/error.html"
+    end
   end
+
 end
