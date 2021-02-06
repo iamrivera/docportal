@@ -44,7 +44,7 @@ class PatientsController < ApplicationController
 
   # GET: /patients/5/edit
   get "/patients/:id/edit" do
-    if logged_in_patient?
+    if authenticated_patient?
       @user = Patient.find(params[:id])
       erb :"/patients/edit.html"
     else
@@ -62,7 +62,13 @@ class PatientsController < ApplicationController
   end
 
   # DELETE: /patients/5/delete
-  delete "/patients/:id/delete" do
-    redirect "/patients"
+  get "/patients/:id/delete" do
+    if authenticated_patient?
+      patient = Patient.find(params[:id])
+      patient.delete
+      redirect "/"
+    else 
+      redirect :"/patients/error.html"
+    end
   end
 end
