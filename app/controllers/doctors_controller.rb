@@ -46,7 +46,7 @@ class DoctorsController < ApplicationController
   # GET: /doctors/5/edit
   get "/doctors/:id/edit" do
     # binding.pry
-    if authenticated_doctor?
+    if authenticated_doctor? #try using the negative method with built in redirect
       @user = Doctor.find(params[:id]) 
       erb :"/doctors/edit.html"
     else
@@ -65,8 +65,13 @@ class DoctorsController < ApplicationController
 
     #GET: /doctors/patient/:id
     get "/doctors/patient/:id" do #PROTECT EDITS, GETS, PATCH, DELETE - Doctor id == Session id / Also needs to protect the patient from other doctor's editing
-      @patient = Patient.find(params[:id])
-      erb :"/doctors/patprofile.html"
+      # binding.pry
+      if authenticated_doctor_patient?
+        @patient = Patient.find(params[:id])
+        erb :"/doctors/patprofile.html"
+      else
+        erb :"/doctors/error.html"
+      end
     end
 
     #PATCH: /doctors/patient/:id
@@ -75,7 +80,7 @@ class DoctorsController < ApplicationController
       @patient = Patient.find(params["id"])
       @patient.update(new_params)
       @patient
-      redirect "/doctors/#{session[:doctor_id]}"
+      redirect "/doctors/#{current_doctor.id}"
     end
 
   #GET: /doctors/error
@@ -85,9 +90,13 @@ class DoctorsController < ApplicationController
 
   # GET: /doctors/patient/:id/delete 
   get "/doctors/patient/:id/delete" do
-    @patient = Patient.find(params[:id])
-    @patient.delete #COULD CHANGE THIS TO DESTROY TO REMOVE FROM DB, BUT PATIENT RECORDS SHOULD BE KEPT 
-    redirect to "/doctors/#{session[:doctor_id]}"
+    if authenticated_doctor_patient?
+      @patient = Patient.find(params[:id])
+      @patient.delete #COULD CHANGE THIS TO DESTROY TO REMOVE FROM DB, BUT PATIENT RECORDS SHOULD BE KEPT 
+      redirect to "/doctors/#{session[:doctor_id]}"
+    else
+      erb :"doctors/error.html"
+    end
   end
 
 
