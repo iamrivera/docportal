@@ -33,9 +33,13 @@ class PatientsController < ApplicationController
 
   # GET: /patients/5
   get "/patients/:id" do
-    @user = Patient.find(params["id"])
-    session["patient_id"] = @user.id
-    erb :"/patients/show.html"
+    if authenticated_patient?
+      @user = Patient.find(params["id"])
+      session["patient_id"] = @user.id
+      erb :"/patients/show.html"
+    else
+      erb :"/patients/error.html"
+    end
   end
 
   # GET: /patients/5/edit
